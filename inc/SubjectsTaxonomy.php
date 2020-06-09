@@ -1,6 +1,4 @@
 <?php
-namespace SB;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -12,12 +10,12 @@ class SubjectsTaxonomy {
 
   public static function init() {
     
-    add_action( 'init', [ __CLASS__, 'tax' ] );
+    add_action('init', [ __CLASS__, 'register_tax_subjects' ]);
     add_action('save_post_team', [__CLASS__, 'update_term_name_for_team']);
     add_action('save_post_bookmakers', [__CLASS__, 'update_term_name_for_bookmakers'], 111);
-    add_action( 'after_delete_post', [ __CLASS__, 'delete_term' ] );
+    add_action('after_delete_post', [ __CLASS__, 'delete_term' ]);
     add_action('save_post_post', [__CLASS__, 'add_subjects_to_post_from_event'], 200);
-    add_action('save_post_post', [__CLASS__, 'set_teams_as_tags'], 300);
+    add_action('save_post_post', [__CLASS__, 'set_esport_as_tags'], 300);
     add_action('save_post_post', [__CLASS__, 'set_bookie_as_tags'], 300);
     add_filter('pre_insert_term', [__CLASS__, 'disallow_add_term'], 10, 2);
 
@@ -45,7 +43,7 @@ class SubjectsTaxonomy {
 
     $term_slug = 'bookie-' . $post_id;
 
-    $dop_info = ['букмекер'];
+    $dop_info = ['BETTING SITES'];
 
     $title = $post->post_title;
 
@@ -76,7 +74,7 @@ class SubjectsTaxonomy {
   public static function delete_term($post_id) {
     $post = get_post( $post_id );
     if ( empty( $post ) ) {
-      if ( $term = get_term_by( 'slug', 'team-' . $post_id, 'subjects' ) ) {
+      if ( $term = get_term_by( 'slug', 'esport-' . $post_id, 'subjects' ) ) {
         wp_delete_term( $term->term_id, 'subjects' );
       }
     }
@@ -108,7 +106,7 @@ class SubjectsTaxonomy {
 
     $post = get_post( $post_id );
 
-    $term_slug = 'team-' . $post_id;
+    $term_slug = 'esport-' . $post_id;
 
     if ( ! ($team = sb_get_team($post_id))) {
       return;
@@ -118,17 +116,17 @@ class SubjectsTaxonomy {
 
     $title = $post->post_title;
 
-    $type = $team->get_event_type();
+    $type = $esport->get_event_type();
 
     if ( ! empty($type)) {
       $dop_info[] = $type[0]->name;
     }
 
-    if ( $country = $team->get_country() ) {
+    if ( $country = $esport->get_country() ) {
       $dop_info[] = $country;
     }
 
-    if ( $city = $team->get_city() ) {
+    if ( $city = $esport->get_city() ) {
       $dop_info[] = $city;
     }
 
@@ -153,63 +151,62 @@ class SubjectsTaxonomy {
       'name' => $title,
     ) );
   }
-
-  /**
-   * Register Custom Taxonomy
-   */
-  public static function tax() {
+  
+  // Register Custom Taxonomy Subjects
+  public static function register_tax_subjects() {
 
     $labels = array(
-      'name'                       => _x( 'Субъекты', 'Taxonomy General Name', 'sb' ),
-      'singular_name'              => _x( 'Субъект', 'Taxonomy Singular Name', 'sb' ),
-      'menu_name'                  => __( 'Субъекты', 'sb' ),
-      'all_items'                  => __( 'All Items', 'sb' ),
-      'parent_item'                => __( 'Parent Item', 'sb' ),
-      'parent_item_colon'          => __( 'Parent Item:', 'sb' ),
-      'new_item_name'              => __( 'New Item Name', 'sb' ),
-      'add_new_item'               => __( 'Add New Item', 'sb' ),
-      'edit_item'                  => __( 'Edit Item', 'sb' ),
-      'update_item'                => __( 'Update Item', 'sb' ),
-      'view_item'                  => __( 'View Item', 'sb' ),
-      'separate_items_with_commas' => __( 'Separate items with commas', 'sb' ),
-      'add_or_remove_items'        => __( 'Add or remove items', 'sb' ),
-      'choose_from_most_used'      => __( 'Choose from the most used', 'sb' ),
-      'popular_items'              => __( 'Popular Items', 'sb' ),
-      'search_items'               => __( 'Search Items', 'sb' ),
-      'not_found'                  => __( 'Not Found', 'sb' ),
-      'no_terms'                   => __( 'No items', 'sb' ),
-      'items_list'                 => __( 'Items list', 'sb' ),
-      'items_list_navigation'      => __( 'Items list navigation', 'sb' ),
+      'name'                       => __( 'subjects', 'wp-esport' ),
+      'singular_name'              => __( 'subject', 'wp-esport' ),
+      'menu_name'                  => __( 'Subjects', 'wp-esport' ),
+      'all_items'                  => __( 'All subjects', 'wp-esport' ),
+      'parent_item'                => __( 'Parent subject', 'wp-esport' ),
+      'parent_item_colon'          => __( 'Parent subject:', 'wp-esport' ),
+      'new_item_name'              => __( 'New subject', 'wp-esport' ),
+      'add_new_item'               => __( 'Add New subjects', 'wp-esport' ),
+      'edit_item'                  => __( 'Edit subject', 'wp-esport' ),
+      'update_item'                => __( 'Update subject', 'wp-esport' ),
+      'view_item'                  => __( 'View subject', 'wp-esport' ),
+      'separate_items_with_commas' => __( 'Separate subjects with commas', 'wp-esport' ),
+      'add_or_remove_items'        => __( 'Add or remove subject', 'wp-esport' ),
+      'choose_from_most_used'      => __( 'Choose from the most used subject', 'wp-esport' ),
+      'popular_items'              => __( 'Popular subjects', 'wp-esport' ),
+      'search_items'               => __( 'Search subjects', 'wp-esport' ),
+      'not_found'                  => __( 'Not Found', 'wp-esport' ),
+      'no_terms'                   => __( 'No subjects', 'wp-esport' ),
+      'items_list'                 => __( 'Subjects list', 'wp-esport' ),
+      'items_list_navigation'      => __( 'Subjects list navigation', 'wp-esport' ),
     );
-    $args   = array(
-      'labels'            => $labels,
-      'hierarchical'      => false,
-      'public'            => false,
-      'show_in_rest'      => true,
-      'show_ui'           => true,
-      'show_admin_column' => true,
-      'show_in_nav_menus' => true,
-      'show_tagcloud'     => true,
+    $args = array(
+      'labels'                     => $labels,
+      'hierarchical'               => false,
+      'public'                     => false,
+      'show_ui'                    => true,
+      'show_admin_column'          => true,
+      'show_in_nav_menus'          => true,
+      'show_tagcloud'              => true,
+      'rewrite'                    => false,
+      'show_in_rest'               => true
     );
-    register_taxonomy(self::$taxonomy, array('post', 'promo'), $args);
+    register_taxonomy( 'subjects', array( 'post, promo' ), $args );
 
   }
 
   /**
    * add tags by subjects
    */
-  public static function set_teams_as_tags($post_id) {
+  public static function set_esport_as_tags($post_id) {
     if ( ! $subjects = wp_get_object_terms($post_id, self::$taxonomy)) {
       return;
     }
 
     $term_ids = [];
     foreach ($subjects as $subject) {
-      if (strpos($subject->slug, 'team-') === false) {
+      if (strpos($subject->slug, 'esport-') === false) {
         continue;
       }
 
-      if ( ! $team_id = intval(str_replace('team-', '', $subject->slug))) {
+      if ( ! $team_id = intval(str_replace('esport-', '', $subject->slug))) {
         continue;
       }
 
@@ -217,10 +214,10 @@ class SubjectsTaxonomy {
         continue;
       }
 
-      if ($term = get_term_by('name', $team->get_name(), 'post_tag')) {
+      if ($term = get_term_by('name', $esport->get_name(), 'post_tag')) {
         $term_ids[] = $term->term_id;
       } else {
-        $term       = wp_insert_term($team->get_name(), 'post_tag', ['slug' => sanitize_title($team->get_name())]);
+        $term       = wp_insert_term($esport->get_name(), 'post_tag', ['slug' => sanitize_title($esport->get_name())]);
         $term_ids[] = $term['term_id'];
       }
     }
@@ -276,8 +273,8 @@ class SubjectsTaxonomy {
 
     // Получаем список слагов для субъектов
     $event_slugs = [
-      'team-' . $event->get_first_team_data()->ID,
-      'team-' . $event->get_second_team_data()->ID,
+      'esport-' . $event->get_first_team_data()->ID,
+      'esport-' . $event->get_second_team_data()->ID,
     ];
 
     // Добавим Термины

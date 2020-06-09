@@ -17,7 +17,16 @@ defined('ABSPATH') || exit;
 class WP_ESPORT {
     
     public static function init(){
+        // All active plugins loaded
+        add_action('plugins_loaded', function() {
+	        load_plugin_textdomain( 'wp-esport', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
+        }, 999);
+
+        add_action('wp_enqueue_scripts', [__CLASS__, 'assets']);
         
+        require_once('inc/SettingsPage.php');
+
+        require_once('inc/SubjectsTaxonomy.php');
     }
 }
 WP_ESPORT::init();
