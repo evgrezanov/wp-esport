@@ -156,8 +156,8 @@ class SubjectsTaxonomy {
   public static function register_tax_subjects() {
 
     $labels = array(
-      'name'                       => __( 'subjects', 'wp-esport' ),
-      'singular_name'              => __( 'subject', 'wp-esport' ),
+      'name'                       => __( 'Subjects', 'wp-esport' ),
+      'singular_name'              => __( 'Subject', 'wp-esport' ),
       'menu_name'                  => __( 'Subjects', 'wp-esport' ),
       'all_items'                  => __( 'All subjects', 'wp-esport' ),
       'parent_item'                => __( 'Parent subject', 'wp-esport' ),
@@ -190,6 +190,40 @@ class SubjectsTaxonomy {
     );
     register_taxonomy( 'subjects', array( 'post, promo' ), $args );
 
+    $promo_type_labels = array(
+      'name'                       => __( 'promo-types', 'wp-esport' ),
+      'singular_name'              => __( 'Promo type', 'wp-esport' ),
+      'menu_name'                  => __( 'Types', 'wp-esport' ),
+      'all_items'                  => __( 'All types', 'wp-esport' ),
+      'parent_item'                => __( 'Parent type', 'wp-esport' ),
+      'parent_item_colon'          => __( 'Parent type:', 'wp-esport' ),
+      'new_item_name'              => __( 'New type', 'wp-esport' ),
+      'add_new_item'               => __( 'Add New type', 'wp-esport' ),
+      'edit_item'                  => __( 'Edit promo type', 'wp-esport' ),
+      'update_item'                => __( 'Update promo type', 'wp-esport' ),
+      'view_item'                  => __( 'View promo type', 'wp-esport' ),
+      'separate_items_with_commas' => __( 'Separate types with commas', 'wp-esport' ),
+      'add_or_remove_items'        => __( 'Add or remove type', 'wp-esport' ),
+      'choose_from_most_used'      => __( 'Choose from the most used types', 'wp-esport' ),
+      'popular_items'              => __( 'Popular types', 'wp-esport' ),
+      'search_items'               => __( 'Search promo types', 'wp-esport' ),
+      'not_found'                  => __( 'Promo types not Found', 'wp-esport' ),
+      'no_terms'                   => __( 'No types', 'wp-esport' ),
+      'items_list'                 => __( 'Types list', 'wp-esport' ),
+      'items_list_navigation'      => __( 'Types list navigation', 'wp-esport' ),
+    );
+    $args_promo_types = array(
+      'labels'                     => $promo_type_labels,
+      'hierarchical'               => false,
+      'public'                     => true,
+      'show_ui'                    => true,
+      'show_admin_column'          => true,
+      'show_in_nav_menus'          => true,
+      'show_tagcloud'              => true,
+      'rewrite'                    => false,
+      'show_in_rest'               => true
+    );
+    register_taxonomy( 'promo-types', array( 'promo' ), $args_promo_types );
   }
 
   /**

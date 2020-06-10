@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Plugin Name: WP eSport magazine
- * Description: Add custom post types and taxonomies, special taxonomies subjects
- * Plugin URI:  https://github.com/evgrezanov/wp-esport-mag
- * Author URI:  https://evgrezanov.github.io/
- * Author:      Evgeniy Rezanov
- * Version:     1.0
- * GitHub Plugin URI: https://github.com/evgrezanov/wp-esport
- * Text Domain: wp-esport
- * Domain Path: /languages
+ * Plugin Name:         WP eSport magazine
+ * Description:         Add custom post types and taxonomies, special taxonomies subjects
+ * Plugin URI:          https://github.com/evgrezanov/wp-esport-mag
+ * Author URI:          https://evgrezanov.github.io/
+ * Author:              Evgeniy Rezanov
+ * Version:             1.1.0
+ * GitHub Plugin URI:   https://github.com/evgrezanov/wp-esport
+ * Text Domain:         wp-esport
+ * Domain Path:         /languages
  */
 
 defined('ABSPATH') || exit;
@@ -22,11 +22,14 @@ class WP_ESPORT {
 	        load_plugin_textdomain( 'wp-esport', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
         }, 999);
 
-        add_action('wp_enqueue_scripts', [__CLASS__, 'assets']);
+        //add_action('wp_enqueue_scripts', [__CLASS__, 'assets']);
         
         require_once('inc/SettingsPage.php');
 
         require_once('inc/SubjectsTaxonomy.php');
+
+        require_once('inc/CustomPostTypes.php');
+
     }
 }
 WP_ESPORT::init();
