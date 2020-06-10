@@ -16,7 +16,7 @@ class CustomPostTypes {
    * @return void
    */
   public static function register_bookmakers() {
-    register_post_type( 'betting-sites', [
+    register_post_type( 'betting-site', [
       'label'  => null,
       'labels'             => [
         'name'               => __( 'Betting sites', 'wp-esport' ), 
@@ -33,12 +33,12 @@ class CustomPostTypes {
         'menu_name'          => __( 'Betting sites', 'wp-esport' ),
 
       ],
+      'show_in_rest'        => true,
       'description'         => __('Custom post type for betting sites', 'wp-esport'),
       'public'             => true,
       'publicly_queryable' => true,
       'show_ui'            => true,
       'show_in_menu'       => true,
-      /*'menu_position'      => 1,*/
       'menu_icon'          => 'dashicons-awards',
       'query_var'          => true,
       'rewrite'            => true,
@@ -66,9 +66,8 @@ class CustomPostTypes {
         'menu_name'          => __('Promo', 'wp-esport'),
       ],
       'show_in_rest'        => true,
-      'description'         => '',
+      'description'         => __('Custom post type for bonus', 'wp-esport'),
       'public'              => true,
-      /*'menu_position'       => 2,*/
       'menu_icon'           => 'dashicons-awards',
       'hierarchical'        => false,
       'supports'            => array('title','editor','author','thumbnail','excerpt','comments'),
@@ -83,9 +82,9 @@ class CustomPostTypes {
     ] );
 
 
-    register_post_type( 'tips', [
+    register_post_type( 'tip', [
       'label'  => null,
-      'labels'             => array(
+      'labels'             => [
         'name'               => __( 'Tips', 'wp-esport' ), 
         'singular_name'      => __( 'Tip', 'wp-esport' ),
         'add_new'            => __( 'New tip', 'wp-esport' ),
@@ -99,9 +98,10 @@ class CustomPostTypes {
         'parent_item_colon'  => '',
         'menu_name'          => __( 'Tips', 'wp-esport' ),
 
-        ),
+      ],
+      'show_in_rest'        => true,
+      'description'         => __('Custom post type for bonus', 'wp-esport'),  
       'public'             => true,
-      /*'menu_position'      => 3,*/
       'menu_icon'          => 'dashicons-awards',
       'publicly_queryable' => true,
       'show_ui'            => true,
@@ -114,6 +114,41 @@ class CustomPostTypes {
       'menu_position'      => null,
       'supports'           => array('title','editor','author','thumbnail','excerpt','comments')
     ] );
+    
+    /*
+    register_post_type( 'eSport', [
+      'label'  => null,
+      'labels'             => [
+        'name'               => __( 'eSports', 'wp-esport' ), 
+        'singular_name'      => __( 'eSport', 'wp-esport' ),
+        'add_new'            => __( 'New eSport', 'wp-esport' ),
+        'add_new_item'       => __( 'Add new eSport', 'wp-esport' ),
+        'edit_item'          => __( 'Edit eSport', 'wp-esport' ),
+        'new_item'           => __( 'New eSport', 'wp-esport' ),
+        'view_item'          => __( 'View eSport', 'wp-esport' ),
+        'search_items'       => __( 'Search eSport', 'wp-esport' ),
+        'not_found'          => __( 'eSport not found', 'wp-esport' ),
+        'not_found_in_trash' => __( 'eSport not found in trash', 'wp-esport' ),
+        'parent_item_colon'  => '',
+        'menu_name'          => __( 'eSport', 'wp-esport' ),
+
+      ],
+      'show_in_rest'        => true,
+      'description'         => __('Custom post type for eSport (games with leagues)', 'wp-esport'),  
+      'public'             => true,
+      'menu_icon'          => 'dashicons-awards',
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'query_var'          => true,
+      'rewrite'            => true,
+      'capability_type'    => 'post',
+      'has_archive'        => true,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array('title','editor','author','thumbnail','excerpt','comments')
+    ] );
+    */
   }
 }
 CustomPostTypes::init();

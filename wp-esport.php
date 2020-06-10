@@ -30,6 +30,8 @@ class WP_ESPORT {
 
         require_once('inc/CustomPostTypes.php');
 
+        require_once('inc/CustomTaxonomy.php');
+
     }
 }
 WP_ESPORT::init();
