@@ -230,32 +230,31 @@ class CustomTaxonomy {
       );
     register_taxonomy( 'mobile-app', array( 'betting-site' ), $args_mobile_apps );
     
-
-    // Languages
-    $languages_labels = array(
-        'name'                       => __( 'languages', 'wp-esport' ),
-        'singular_name'              => __( 'Language', 'wp-esport' ),
-        'menu_name'                  => __( 'Languages', 'wp-esport' ),
-        'all_items'                  => __( 'All languages', 'wp-esport' ),
-        'parent_item'                => __( 'Parent language', 'wp-esport' ),
-        'parent_item_colon'          => __( 'Parent language:', 'wp-esport' ),
-        'new_item_name'              => __( 'New language', 'wp-esport' ),
-        'add_new_item'               => __( 'Add New language', 'wp-esport' ),
-        'edit_item'                  => __( 'Edit language', 'wp-esport' ),
-        'update_item'                => __( 'Update language', 'wp-esport' ),
-        'view_item'                  => __( 'View language', 'wp-esport' ),
-        'separate_items_with_commas' => __( 'Separate language with commas', 'wp-esport' ),
-        'add_or_remove_items'        => __( 'Add or remove language', 'wp-esport' ),
-        'choose_from_most_used'      => __( 'Choose from the most used languages', 'wp-esport' ),
-        'popular_items'              => __( 'Popular languages', 'wp-esport' ),
-        'search_items'               => __( 'Search languages', 'wp-esport' ),
-        'not_found'                  => __( 'Language not Found', 'wp-esport' ),
-        'no_terms'                   => __( 'No languages', 'wp-esport' ),
-        'items_list'                 => __( 'Languages list', 'wp-esport' ),
-        'items_list_navigation'      => __( 'Languages list navigation', 'wp-esport' ),
+    // Countries
+    $countries_labels = array(
+        'name'                       => __( 'countries', 'wp-esport' ),
+        'singular_name'              => __( 'Country', 'wp-esport' ),
+        'menu_name'                  => __( 'Countries', 'wp-esport' ),
+        'all_items'                  => __( 'All countries', 'wp-esport' ),
+        'parent_item'                => __( 'Parent country', 'wp-esport' ),
+        'parent_item_colon'          => __( 'Parent country:', 'wp-esport' ),
+        'new_item_name'              => __( 'New country', 'wp-esport' ),
+        'add_new_item'               => __( 'Add New country', 'wp-esport' ),
+        'edit_item'                  => __( 'Edit country', 'wp-esport' ),
+        'update_item'                => __( 'Update country', 'wp-esport' ),
+        'view_item'                  => __( 'View country', 'wp-esport' ),
+        'separate_items_with_commas' => __( 'Separate country with commas', 'wp-esport' ),
+        'add_or_remove_items'        => __( 'Add or remove country', 'wp-esport' ),
+        'choose_from_most_used'      => __( 'Choose from the most used countries', 'wp-esport' ),
+        'popular_items'              => __( 'Popular countries', 'wp-esport' ),
+        'search_items'               => __( 'Search countries', 'wp-esport' ),
+        'not_found'                  => __( 'Country not Found', 'wp-esport' ),
+        'no_terms'                   => __( 'No countries', 'wp-esport' ),
+        'items_list'                 => __( 'Countries list', 'wp-esport' ),
+        'items_list_navigation'      => __( 'Countries list navigation', 'wp-esport' ),
     );
-    $args_languages = array(
-        'labels'                     => $languages_labels,
+    $args_countries = array(
+        'labels'                     => $countries_labels,
         'hierarchical'               => false,
         'public'                     => true,
         'show_ui'                    => true,
@@ -265,7 +264,7 @@ class CustomTaxonomy {
         'rewrite'                    => false,
         'show_in_rest'               => true
     );
-    register_taxonomy( 'languages', array( 'betting-site' ), $args_languages );
+    register_taxonomy( 'countries', array( 'betting-site' ), $args_countries );
     
     // Other gambling_options
     $gambling_options_labels = array(
