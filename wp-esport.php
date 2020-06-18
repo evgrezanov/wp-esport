@@ -6,7 +6,7 @@
  * Plugin URI:          https://github.com/evgrezanov/wp-esport-mag
  * Author URI:          https://evgrezanov.github.io/
  * Author:              Evgeniy Rezanov
- * Version:             1.2.0
+ * Version:             1.2.1
  * GitHub Plugin URI:   https://github.com/evgrezanov/wp-esport
  * Text Domain:         wp-esport
  * Domain Path:         /languages

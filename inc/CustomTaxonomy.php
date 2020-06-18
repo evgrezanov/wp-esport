@@ -119,7 +119,7 @@ class CustomTaxonomy {
       'rewrite'                    => false,
       'show_in_rest'               => true
     );
-    register_taxonomy( 'esports', array( 'post', 'promo', 'betting-site', 'tip' ), $args_esports );
+    register_taxonomy( 'esports', array( 'post', 'promo', 'betting-site' ), $args_esports );
     
 
     // Deposit

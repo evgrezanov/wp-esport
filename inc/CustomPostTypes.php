@@ -11,7 +11,7 @@ class CustomPostTypes {
   }
 
   /**
-   * Регистрирует custom post type
+   * Register custom post type
    *
    * @return void
    */
@@ -81,7 +81,7 @@ class CustomPostTypes {
       'capability_type' => 'post',
     ] );
 
-
+    /*
     register_post_type( 'tip', [
       'label'  => null,
       'labels'             => [
@@ -115,7 +115,7 @@ class CustomPostTypes {
       'supports'           => array('title','editor','author','thumbnail','excerpt','comments')
     ] );
     
-    /*
+    
     register_post_type( 'eSport', [
       'label'  => null,
       'labels'             => [
